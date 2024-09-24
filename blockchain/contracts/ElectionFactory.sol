@@ -1,15 +1,18 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
+
+import "@opengsn/contracts/src/ERC2771Recipient.sol";
 import "./Election.sol";
 
-contract ElectionFactory {
+contract ElectionFactory is ERC2771Recipient {
     address owner;
 
     // Array to keep track of the elections
     address[] elections;
 
-    constructor() {
+    constructor(address _forwarder) {
         owner = msg.sender;
+        _setTrustedForwarder(_forwarder);
     }
 
     modifier onlyOwner() {
