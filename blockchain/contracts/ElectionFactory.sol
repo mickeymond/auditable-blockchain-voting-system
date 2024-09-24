@@ -6,26 +6,28 @@ import "./Election.sol";
 
 contract ElectionFactory is ERC2771Recipient {
     address owner;
-
     // Array to keep track of the elections
     address[] elections;
-
-    constructor(address _forwarder) {
-        owner = msg.sender;
-        _setTrustedForwarder(_forwarder);
-    }
+    // Event emitted when an election is created
+    event ElectionCreated(address electionAddress);
 
     modifier onlyOwner() {
         require(msg.sender == owner, "You are not the owner");
         _;
     }
 
-    // Event emitted when an election is created
-    event ElectionCreated(address electionAddress);
+    constructor() {
+        owner = msg.sender;
+    }
 
     // Function to return the owner address (added this function)
     function getOwner() public view returns (address) {
         return owner;
+    }
+
+    // Set OpenGSN Trusted Forwarder
+    function setTrustedForwarder(address _forwarder) public onlyOwner {
+        _setTrustedForwarder(_forwarder);
     }
 
     // Function to create new election

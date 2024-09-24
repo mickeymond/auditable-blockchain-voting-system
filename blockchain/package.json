@@ -18,6 +18,6 @@
     "@opengsn/cli": "^3.0.0-beta.6",
     "@opengsn/contracts": "^3.0.0-beta.6",
     "dotenv": "^16.4.5",
-    "hardhat": "^2.22.9"
+    "hardhat": "^2.22.11"
   }
 }
