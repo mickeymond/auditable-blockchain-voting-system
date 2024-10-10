@@ -25,6 +25,8 @@ export default function AllElections() {
         .call()
         .then((addresses) => setElections(addresses as []))
         .catch(console.log);
+
+      electionFactory.methods.getTrustedForwarder().call().then(console.log).catch(console.log);
     }
   }, [provider, connected, chainId])
 

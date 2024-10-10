@@ -1,6 +1,7 @@
 "use client";
-import { ELECTION_FACTORY_ABI, getFactoryAddress } from "@/contracts/ElectionFactory";
+import { ELECTION_FACTORY_ABI, getFactoryAddress, getPaymasterAddress } from "@/contracts/ElectionFactory";
 import { useSDK } from "@metamask/sdk-react";
+import { RelayProvider } from "@opengsn/provider";
 import { useRouter } from "next/navigation";
 import { SyntheticEvent, useState } from "react";
 import Web3 from "web3";
@@ -20,7 +21,15 @@ export default function CreateElection() {
         // Use FormData API to collect data
         const formData = new FormData(event.currentTarget);
         // Initialize web3
-        const web3 = new Web3(provider);
+        const relayProvider = await RelayProvider.newProvider({
+          // @ts-ignore
+          provider,
+          config: {
+            paymasterAddress: getPaymasterAddress(provider.getChainId())
+          }
+        }).init();
+        // @ts-ignore
+        const web3 = new Web3(relayProvider);
         // Initialize contract
         const electionFactory = new web3.eth.Contract(ELECTION_FACTORY_ABI, getFactoryAddress(provider.getChainId()));
         // Invote method
@@ -140,7 +149,7 @@ export default function CreateElection() {
       <button
         className="mt-6 bg-gradient-to-r from-primary to-[#4595DF] hover:from-[#4595DF] hover:to-primary cursor-pointer text-white px-14 py-3 rounded-3xl w-full sm:w-auto float-none sm:float-right"
         type="submit"
-        disabled={loading}
+      // disabled={loading}
       >
         next
       </button>
