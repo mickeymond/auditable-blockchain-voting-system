@@ -8,6 +8,8 @@ export const getPaymasterAddress = (chainId: string) => {
       return '0x0000000000000000000000000000000000000000';
     case utils.toHex(17000):
       return '0x302aC33BE431Ed2cC7Bd6731c71525a015C8DA57';
+    case utils.toHex(31337):
+      return '0x5FC8d32690cc91D4c39d9d3abcBD16989F875707';
     default:
       return '';
   }
@@ -21,6 +23,8 @@ export const getFactoryAddress = (chainId: string) => {
       return '0x743C2323E0447bb300c10655Ebc0168d03B4a544';
     case utils.toHex(17000):
       return '0xf5cD05816991F60134b4fc7C86f8705080DB2992';
+    case utils.toHex(31337):
+      return '0x3Aa5ebB10DC797CAC828524e59A333d0A371443c';
     default:
       return '';
   }
