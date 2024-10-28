@@ -5,7 +5,7 @@ export const getPaymasterAddress = (chainId: string) => {
     case utils.toHex(11155111):
       return '0x7302A0c9676C3E2e2178cB33ABC2749249Fe224e';
     case utils.toHex(534351):
-      return '0x0000000000000000000000000000000000000000';
+      return '0x085f8B30fd7584328d38e720dE4F1E5434A123B9';
     case utils.toHex(17000):
       return '0x302aC33BE431Ed2cC7Bd6731c71525a015C8DA57';
     case utils.toHex(31337):
